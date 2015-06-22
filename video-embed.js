@@ -164,6 +164,23 @@
                     });
                 }
             },
+              getDuration: {
+                value: function() {
+                    var videoEmbed = this;
+                    return new Promise(function(resolve) {
+                        videoEmbed._player.then(function(player) {
+                            if (videoEmbed.playerType === 'youtube') {
+                                resolve(player.getDuration());
+                            }
+                            else {
+                                player.api('getDuration', function(time) {
+                                    resolve(time);
+                                });
+                            }
+                        });
+                    });
+                }
+            },
 
             pause: {
                 value: function() {
